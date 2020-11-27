@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./style.css";
 import { useQuery, useMutation, gql } from "@apollo/client"
 
@@ -11,19 +11,23 @@ const CARDS = gql`
     }
   `
 const ADD_CARD = gql`
-  mutation MyMutation {
-    insert_cards_one {
+  mutation MyMutation($q: String, $a: String) {
+  insert_cards_one(object: {question: $q, answer: $a }) {
     question
     answer
-    id
   }
 }
 `
 
 export default function App() {
   const [values, setValues] = useState({question: "", answer: ""})
-  const [addCard, {mutatedData}] = useMutation(ADD_CARD)
+  const [cardList, setCardList] = useState([])
+  const [insert_cards_one, {mutatedData}] = useMutation(ADD_CARD)
 
+  const { loading, error, data } = useQuery(CARDS)
+  
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
 
   function handleChange(event) {
     const {name, value} = event.target
@@ -32,17 +36,21 @@ export default function App() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    addCard({variables: {question: values.question, answer: values.answer}})
-    values.question = ""
-    values.answer = ""
-    console.log(data.cards)
+    setCardList(prevCard => [...prevCard, values])
+    insert_cards_one({variables: { q: values.question, a: values.answer}})
+    setValues({question: "", answer: ""})
   }
 
+  const qas = data.cards.map(card => (
+    <div>
+      <p>Question: {card.question}</p>
+      <p>Answer: {card.answer}</p>
+    </div>
+  ))
 
-  const { loading, error, data } = useQuery(CARDS)
-  
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+  // useEffect(() => {
+  //   setCardList(data.cards)  
+  // },[])
 
   return (
     <div>
@@ -53,12 +61,7 @@ export default function App() {
         <textarea placeholder="Answer" name="answer" onChange={handleChange} value={values.answer}/>
         <button type="submit">Submit</button>
       </form>
-        {data.cards.map(card => (
-          <div>
-            <p>Question: {card.question}</p>
-            <p>Answer: {card.answer}</p>
-          </div>
-        ))}
+      { qas }
     </div>
   );
 }
