@@ -1,34 +1,26 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
-import { useQuery, useMutation, gql } from "@apollo/client"
+import { useQuery, useMutation } from "@apollo/client"
+import { CARDS, ADD_CARD, DELETE_CARDS } from "../graphql/get-data.js"
+import Slider from "../components/Slider"
 
-const CARDS = gql`
-  query MyQuery {
-      cards {
-        question
-        answer
-      }
-    }
-  `
-const ADD_CARD = gql`
-  mutation MyMutation($q: String, $a: String) {
-  insert_cards_one(object: {question: $q, answer: $a }) {
-    question
-    answer
-  }
-}
-`
 
 export default function App() {
-  const [values, setValues] = useState({question: "", answer: ""})
-  const [cards, setCards] = useState([])
-  const [isCards, setIsCards] = useState(false)
-  const [insert_cards_one, {mutatedData}] = useMutation(ADD_CARD)
   const { loading, error, data } = useQuery(CARDS)
+  const [values, setValues] = useState({question: "", answer: ""})
+  const [isCards, setIsCards] = useState(false)
+  const [insert_cards_one] = useMutation(ADD_CARD)
+  const [deleteAllCards, {deleteData}] = useMutation(DELETE_CARDS)
+  const [cards, setCards] = useState([])
+
+   useEffect(() => {
+     if(loading === false && data) {
+       setCards(data.cards)
+     }
+   },[loading, data, deleteData])
   
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-  
+    if (error) return <p>Error :(</p>; 
 
   function handleChange(event) {
     const {name, value} = event.target
@@ -39,21 +31,17 @@ export default function App() {
     event.preventDefault()
     insert_cards_one({variables: { q: values.question, a: values.answer}})
     setCards(prevCard => [...prevCard, values])
-    setValues({question: "", answer: ""})
-    window.location.reload(false);
+    setValues({question: "", answer: ""}) 
   }
-
 
   function showCards() {
     setIsCards(!isCards)
-  } 
+  }
 
-  const viewCards =  data.cards.map(card => (
-    <div key={card.question}>
-      <p>Question: {card.question}</p>
-      <p>Answer: {card.answer}</p>
-    </div>
-    ))
+  function deleteCards() {
+    deleteAllCards()
+    setCards([])
+  }
 
   return (
     <div>
@@ -65,7 +53,15 @@ export default function App() {
         <button type="submit">Submit</button>
       </form>
       <button onClick={showCards}>View Cards</button>
-      {isCards ? viewCards : null}
+      <button onClick={deleteCards}>Clear all cards</button>
+      
+      <div>
+        {cards.map((card, i) => (
+          isCards && <Slider key={card.id} question={card.question} answer={card.answer} currLength={i+1} total={cards.length}/>
+        ))}
+      </div>
+     
+
     </div>
   );
 }
