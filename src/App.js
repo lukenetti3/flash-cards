@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./style.css";
 import { useQuery, useMutation } from "@apollo/client"
 import { CARDS, ADD_CARD, DELETE_CARDS } from "../graphql/get-data.js"
-import Slider from "../components/Slider"
+import FlashSlider from "../components/FlashSlider"
 
 
 export default function App() {
@@ -57,11 +57,9 @@ export default function App() {
       
       <div>
         {cards.map((card, i) => (
-          isCards && <Slider key={card.id} question={card.question} answer={card.answer} currLength={i+1} total={cards.length}/>
+          isCards && <FlashSlider key={card.id} question={card.question} answer={card.answer} currLength={i+1} total={cards.length}/>
         ))}
       </div>
-     
-
     </div>
   );
 }
