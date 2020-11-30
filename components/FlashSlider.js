@@ -3,7 +3,8 @@ import { BiRightArrowCircle, BiLeftArrowCircle} from "react-icons/bi"
 import Slider from '@farbenmeer/react-spring-slider';
 
 function FlashSlider(props) {
-  
+  console.log(props)
+
   return(
       <div className="slides-container">
         <BiLeftArrowCircle style={{fontSize: "3em", color: "#3C91E6"}}/>
