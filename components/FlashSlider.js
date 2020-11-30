@@ -1,13 +1,19 @@
 import React from "react"
 import { BiRightArrowCircle, BiLeftArrowCircle} from "react-icons/bi"
-import Slider from '@farbenmeer/react-spring-slider';
+
+function prevSlide() {
+  
+  const singleCard = document.querySelector(".single-card")
+  singleCard.classList.add("testing")
+
+}
+
 
 function FlashSlider(props) {
-  console.log(props)
 
   return(
       <div className="slides-container">
-        <BiLeftArrowCircle style={{fontSize: "3em", color: "#3C91E6"}}/>
+        <BiLeftArrowCircle style={{fontSize: "3em", color: "#3C91E6"}} onClick={prevSlide}/>
         <div className="single-card">
           <h4>Question:</h4>
           <p>{props.question}</p>
