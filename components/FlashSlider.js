@@ -5,7 +5,6 @@ import Slider from '@farbenmeer/react-spring-slider';
 function FlashSlider(props) {
   
   return(
-    <Slider>
       <div className="slides-container">
         <BiLeftArrowCircle style={{fontSize: "3em", color: "#3C91E6"}}/>
         <div className="single-card">
@@ -18,7 +17,6 @@ function FlashSlider(props) {
         </div>
         <BiRightArrowCircle style={{fontSize: "3em", color: "#3C91E6"}}/>
       </div>
-    </Slider>
   )
 }
 
