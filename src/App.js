@@ -2,13 +2,12 @@ import React, {useState, useEffect} from "react";
 import "./style.css";
 import { useQuery, useMutation } from "@apollo/client"
 import { CARDS, ADD_CARD, DELETE_CARDS } from "../graphql/get-data.js"
-import FlashSlider from "../components/FlashSlider"
+import Slider from "../components/Slider"
 
 
 export default function App() {
   const { loading, error, data } = useQuery(CARDS)
   const [values, setValues] = useState({question: "", answer: ""})
-  const [isCards, setIsCards] = useState(false)
   const [insert_cards_one] = useMutation(ADD_CARD)
   const [deleteAllCards, {deleteData}] = useMutation(DELETE_CARDS)
   const [cards, setCards] = useState([])
@@ -34,10 +33,6 @@ export default function App() {
     setValues({question: "", answer: ""}) 
   }
 
-  function showCards() {
-    setIsCards(!isCards)
-  }
-
   function deleteCards() {
     deleteAllCards()
     setCards([])
@@ -52,14 +47,8 @@ export default function App() {
         <textarea placeholder="Answer" name="answer" onChange={handleChange} value={values.answer}/>
         <button type="submit">Submit</button>
       </form>
-      <button onClick={showCards}>View Cards</button>
       <button onClick={deleteCards}>Clear all cards</button>
-      
-      <div>
-        {cards.map((card, i) => (
-          isCards && <FlashSlider key={card.id} question={card.question} answer={card.answer} currLength={i+1} total={cards.length}/>
-        ))}
-      </div>
+      <Slider arr={cards}/>
     </div>
   );
 }
