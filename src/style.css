@@ -9,7 +9,6 @@ h1, h2, h3, h4, p {
 }
 
 .single-card {
-  display: none;
   background-color: #3C91E6;
   color: #FAFFFD;
   width: 50%;
