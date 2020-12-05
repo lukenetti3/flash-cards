@@ -43,13 +43,17 @@ export default function App() {
       <div className="header">
         <div>
           <h1>Welcome to Luke's flash cards</h1>
-          <h3>New flashcard</h3>
           <form onSubmit={handleSubmit}>
-            <textarea placeholder="Question" name="question" onChange={handleChange} value={values.question}/>
-            <textarea placeholder="Answer" name="answer" onChange={handleChange} value={values.answer}/>
-            <button type="submit">Submit</button>
+            <label>Question</label>
+            <br />
+            <textarea rows="5" name="question" onChange={handleChange} value={values.question}/>
+            <br />
+            <label>Answer</label>
+            <br /> 
+            <input rows="2" name="answer" onChange={handleChange} value={values.answer}/>
+            <button type="submit">Create</button>
           </form>
-          <button onClick={deleteCards}>Clear all cards</button>
+          <button id="clearBtn" onClick={deleteCards}>Clear all cards</button>
         </div>
       </div>
       {cards == "" ? <h3 style={{textAlign: "center"}}>No cards available. Create a new card!</h3> : <Slider arr={cards} />}
