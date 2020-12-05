@@ -39,16 +39,18 @@ export default function App() {
   }
 
   return (
-    <div>
-      <h1>Welcome to Luke's flash cards</h1>
-      <h3>New flashcard</h3>
-      <form onSubmit={handleSubmit}>
-        <textarea placeholder="Question" name="question" onChange={handleChange} value={values.question}/>
-        <textarea placeholder="Answer" name="answer" onChange={handleChange} value={values.answer}/>
-        <button type="submit">Submit</button>
-      </form>
-      <button onClick={deleteCards}>Clear all cards</button>
-      <Slider arr={cards}/>
+    <div className="header">
+      <div>
+        <h1>Welcome to Luke's flash cards</h1>
+        <h3>New flashcard</h3>
+        <form onSubmit={handleSubmit}>
+          <textarea placeholder="Question" name="question" onChange={handleChange} value={values.question}/>
+          <textarea placeholder="Answer" name="answer" onChange={handleChange} value={values.answer}/>
+          <button type="submit">Submit</button>
+        </form>
+        <button onClick={deleteCards}>Clear all cards</button>
+        <Slider arr={cards}/>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,11 @@ h1, h2, h3, h4, p {
   font-family: Lato;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+}
+
 .slides-container {
   display: flex;
   align-items: center;
@@ -9,13 +14,25 @@ h1, h2, h3, h4, p {
 }
 
 .single-card {
+  text-align: center;
+  width: 100%;
   background-color: #3C91E6;
   color: #FAFFFD;
-  width: 50%;
-  padding: 5px 20px;
+  padding: 40px 70px;
   margin: 20px;
   box-shadow: 2px 2px 22px 2px #cccccc;
   border-radius: 3px;
 }
 
+.rec.rec-dot {
+  background-color: white;
+  height: 10px;
+  width: 10px;
+  box-shadow: 1px 1px 3px 1px rgb(207, 207, 207);
+}
+
+.rec.rec-dot_active {
+  background-color:#3C91E6;
+  box-shadow: 1px 1px 3px 1px rgb(207, 207, 207);
+}
 
