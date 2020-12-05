@@ -51,9 +51,9 @@ export default function App() {
             <label>Answer</label>
             <br /> 
             <input rows="2" name="answer" onChange={handleChange} value={values.answer}/>
-            <button type="submit">Create</button>
+            <button className="btn" type="submit">Create</button>
           </form>
-          <button id="clearBtn" onClick={deleteCards}>Clear all cards</button>
+          <button className="btn" id="clearBtn" onClick={deleteCards}>Clear all cards</button>
           <p id="note">*Click card to show answer</p>
         </div>
       </div>
