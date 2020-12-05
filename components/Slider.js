@@ -7,7 +7,7 @@ function Slider(props) {
   const cards = props.arr
     
   return(
-    <Carousel itemsToShow={1} showArrows={false}>
+    <Carousel itemsToShow={1} className="carousel">
       {cards.map((card, i) => (
       <div className="slides-container" key={i}>
         <div className="single-card">
