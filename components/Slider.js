@@ -1,20 +1,31 @@
-import React from "react"
-import { BiRightArrowCircle, BiLeftArrowCircle} from "react-icons/bi"
+import React, {useState} from "react"
 import Carousel from 'react-elastic-carousel'
 
 function Slider(props) {
+  const [toggleAnswer, setToggleAnswer] = useState(false)
 
   const cards = props.arr
+
+  function showAnswer() {
+    setToggleAnswer(!toggleAnswer)
+  }
     
   return(
     <Carousel itemsToShow={1} className="carousel">
       {cards.map((card, i) => (
-      <div className="slides-container" key={i}>
+      <div className="slides-container" key={i} onClick={showAnswer}>
         <div className="single-card">
-          <h2>Question:</h2>
-          <p>{card.question}</p>
-          <h2>Answer:</h2>
-          <p>{card.answer}</p>
+          {toggleAnswer ?
+          <div className="answer">
+            <h2>Answer:</h2>
+            <p>{card.answer}</p>
+          </div>
+          :
+          <div>
+            <h2>Question:</h2>
+            <p>{card.question}</p>
+          </div>
+          }
         </div>
       </div>
       ))}

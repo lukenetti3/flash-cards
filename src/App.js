@@ -42,7 +42,7 @@ export default function App() {
     <div>
       <div className="header">
         <div>
-          <h1>Welcome to Luke's flash cards</h1>
+          <h1 style={{color: "#0A2A4A"}}>Welcome to Luke's flash cards</h1>
           <form onSubmit={handleSubmit}>
             <label>Question</label>
             <br />
@@ -54,6 +54,7 @@ export default function App() {
             <button type="submit">Create</button>
           </form>
           <button id="clearBtn" onClick={deleteCards}>Clear all cards</button>
+          <p id="note">*Click card to show answer</p>
         </div>
       </div>
       {cards == "" ? <h3 style={{textAlign: "center"}}>No cards available. Create a new card!</h3> : <Slider arr={cards} />}

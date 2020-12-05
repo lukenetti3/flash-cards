@@ -22,6 +22,7 @@ button {
   font-weight: bold;
   float: left;
   margin-top: 10px;
+  margin-bottom: 30px;
   margin-right: 10px;
   background-color: #0A2A4A;
   color: white;
@@ -32,6 +33,11 @@ button {
 
 #clearBtn {
   background-color: #E6593D;
+}
+
+#note {
+  font-size: 12px;
+  font-style: italic;
 }
 
 .carousel {
@@ -55,6 +61,15 @@ button {
   margin: 20px;
   box-shadow: 2px 2px 22px 2px #cccccc;
   border-radius: 3px;
+  outline: none;
+}
+
+*:focus {
+  outline: 0;
+}
+
+.answer {
+  transition-timing-function: ease-in-out;
 }
 
 .rec.rec-arrow {
@@ -64,20 +79,23 @@ button {
 }
 
 .rec.rec-arrow:hover {
-  color: rgb(85, 85, 85);
+  color: #3C91E6;
   background-color: white;
   box-shadow: none;
 }
 
+/* .rec.rec-dot {
+  display: none;
+} */
+
 .rec.rec-dot {
+  width: 1px;
   background-color: darkgrey;
   box-shadow: none;
-  /* box-shadow: 1px 1px 3px 1px rgb(207, 207, 207); */
 }
 
 .rec.rec-dot:hover {
   background-color: rgb(85, 85, 85);
-
 }
 
 .rec.rec-dot_active {
