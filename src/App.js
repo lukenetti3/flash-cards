@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 import { useQuery, useMutation } from "@apollo/client"
-import { CARDS, ADD_CARD, DELETE_CARDS } from "../graphql/get-data.js"
-import Slider from "../components/Slider"
+import { CARDS, ADD_CARD, DELETE_CARDS } from "./graphql/get-data.js"
+import Slider from "./components/Slider"
 
 
 export default function App() {
