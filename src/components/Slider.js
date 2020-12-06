@@ -19,13 +19,13 @@ function Slider(props) {
       <div className="slides-container" key={i} onClick={showAnswer}>
         <div className="single-card">
           {toggleAnswer ?
-          <animated.div className="answer" style={animateProps}>
+          <div className="answer">
             <h3>{card.answer}</h3>
-          </animated.div>
+          </div>
           :
-          <animated.div style={animateProps}>
+          <div>
             <h3>{card.question}</h3>
-          </animated.div>
+          </div>
           }
         </div>
       </div>
