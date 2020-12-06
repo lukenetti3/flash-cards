@@ -1,6 +1,5 @@
 import React, {useState} from "react"
 import Carousel from 'react-elastic-carousel'
-import {useSpring, animated} from 'react-spring'
 
 function Slider(props) {
   const [toggleAnswer, setToggleAnswer] = useState(false)
