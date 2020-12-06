@@ -9,8 +9,6 @@ function Slider(props) {
   function showAnswer() {
     setToggleAnswer(!toggleAnswer)
   }
-
-  const animateProps = useSpring({opacity: 1, from: {opacity: 0}})
     
   return(
     <Carousel itemsToShow={1} className="carousel">
