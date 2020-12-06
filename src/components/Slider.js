@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import Carousel from 'react-elastic-carousel'
+import {useSpring, animated} from 'react-spring'
 
 function Slider(props) {
   const [toggleAnswer, setToggleAnswer] = useState(false)
@@ -9,6 +10,8 @@ function Slider(props) {
   function showAnswer() {
     setToggleAnswer(!toggleAnswer)
   }
+
+  const animateProps = useSpring({opacity: 1, from: {opacity: 0}})
     
   return(
     <Carousel itemsToShow={1} className="carousel">
@@ -16,15 +19,13 @@ function Slider(props) {
       <div className="slides-container" key={i} onClick={showAnswer}>
         <div className="single-card">
           {toggleAnswer ?
-          <div className="answer">
-            <h2>Answer:</h2>
-            <p>{card.answer}</p>
-          </div>
+          <animated.div className="answer" style={animateProps}>
+            <h3>{card.answer}</h3>
+          </animated.div>
           :
-          <div>
-            <h2>Question:</h2>
-            <p>{card.question}</p>
-          </div>
+          <animated.div style={animateProps}>
+            <h3>{card.question}</h3>
+          </animated.div>
           }
         </div>
       </div>

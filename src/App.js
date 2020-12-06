@@ -4,7 +4,6 @@ import { useQuery, useMutation } from "@apollo/client"
 import { CARDS, ADD_CARD, DELETE_CARDS } from "./graphql/get-data.js"
 import Slider from "./components/Slider"
 
-
 export default function App() {
   const { loading, error, data } = useQuery(CARDS)
   const [values, setValues] = useState({question: "", answer: ""})
@@ -51,10 +50,12 @@ export default function App() {
             <label>Answer</label>
             <br /> 
             <input rows="2" name="answer" onChange={handleChange} value={values.answer}/>
-            <button className="btn" type="submit">Create</button>
+            <div style={{display: "flex"}}>
+              <button className="btn" type="submit">Create</button>
+              <p id="note">*Click card to show answer</p>
+            </div>
           </form>
           <button className="btn" id="clearBtn" onClick={deleteCards}>Clear all cards</button>
-          <p id="note">*Click card to show answer</p>
         </div>
       </div>
       {cards == "" ? <h3 style={{textAlign: "center"}}>No cards available. Create a new card!</h3> : <Slider arr={cards} />}
