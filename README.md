@@ -1,3 +1,8 @@
-# lukenetti-flash-cards
+# Flash Card App
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/lukenetti-flash-cards)
+This app was built using the following technologies:
+* React
+* GraphQL (mutations and queries)
+* Apollo Client
+* Hasura
+
